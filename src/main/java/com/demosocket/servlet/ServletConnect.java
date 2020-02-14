@@ -57,7 +57,7 @@ public class ServletConnect extends HttpServlet {
         for (int i = 0; i < gc.getRowLength(); i++) {
             // render column buttons
             if (i == 0 && !gc.isGameOver()) {
-                view += "<tr>";g
+                view += "<tr>";
                 for (int j = 0; j < gc.getColLength(); j++) {
                     view += "<td>";
                     view += "<form action=\"game\" method=\"GET\">";
