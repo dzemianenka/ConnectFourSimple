@@ -16,8 +16,14 @@
 </div>
 <form action="game" method="post">
     <div>
-        <div class="blueBlock">Player 1: <input class="field" type="text" name="name1"></div><br>
-        <div class="redBlock">Player 2: <input class="field" type="text" name="name2"></div><br>
+        <div class="blueBlock">
+            <label for="name1">Player 1:</label>
+            <input class="field" type="text" id="name1" name="name1">
+        </div><br>
+        <div class="redBlock">
+            <label for="name2">Player 1:</label>
+            <input class="field" type="text" id="name2" name="name2">
+        </div><br>
     </div><br>
     <input class="button" type="submit">
 </form><br>

@@ -51,12 +51,13 @@ public class ServletConnect extends HttpServlet {
     }
 
     private String getBoard() {
+        StringBuilder sb = new StringBuilder("<table align=\"center\" style=\"width:70%\">");
         String view = "";
         view += "<table align=\"center\" style=\"width:70%\">";
         for (int i = 0; i < gc.getRowLength(); i++) {
             // render column buttons
             if (i == 0 && !gc.isGameOver()) {
-                view += "<tr>";
+                view += "<tr>";g
                 for (int j = 0; j < gc.getColLength(); j++) {
                     view += "<td>";
                     view += "<form action=\"game\" method=\"GET\">";
