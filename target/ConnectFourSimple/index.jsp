@@ -21,7 +21,6 @@
     </div><br>
     <input class="button" type="submit">
 </form><br>
-<div class="block">Version: 1.0.0</div>
 </body>
 </html>
 
