@@ -3,8 +3,8 @@ package com.demosocket.game;
 public class GameConnect {
 
     private int[][] board;
-    private String player1Name = "Player 1";
-    private String player2Name = "Player 2";
+    private String player1Name = "";
+    private String player2Name = "";
     private boolean player1Turn = true;
     private boolean player2Turn = false;
     private String winner = "";
@@ -210,5 +210,13 @@ public class GameConnect {
     public void startOver() {
         clearBoard();
         winner = "";
+    }
+
+    public void setPlayer1Name(String player1Name) {
+        this.player1Name = player1Name;
+    }
+
+    public void setPlayer2Name(String player2Name) {
+        this.player2Name = player2Name;
     }
 }

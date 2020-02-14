@@ -45,6 +45,8 @@ public class ServletConnect extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        gc.setPlayer1Name(req.getParameter("name1"));
+        gc.setPlayer2Name(req.getParameter("name2"));
         doGet(req,resp);
     }
 
