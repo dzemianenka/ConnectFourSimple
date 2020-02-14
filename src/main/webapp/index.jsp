@@ -24,9 +24,8 @@
             <label for="name2">Player 1:</label>
             <input class="field" type="text" id="name2" name="name2">
         </div><br>
-    </div><br>
+    </div>
     <input class="button" type="submit">
 </form><br>
 </body>
 </html>
-

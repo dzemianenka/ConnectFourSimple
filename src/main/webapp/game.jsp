@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="css/elements.css" >
     <style>
         <%=request.getAttribute("tableStyle")%>
+
         img {
             width: 60px;
             height: 60px;
+            padding-top: 3px;
         }
     </style>
 </head>
@@ -24,5 +26,3 @@
 </form>
 </body>
 </html>
-
-

@@ -18,7 +18,8 @@ public class ServletConnect extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         if (req.getParameter("play") == null) {
             gc.clearBoard();
         } else {
@@ -33,50 +34,47 @@ public class ServletConnect extends HttpServlet {
         }
         if (gc.isGameOver()) {
             req.setAttribute("winner", gc.getWinner());
-            req.setAttribute("tableStyle", "tr, td { border: 1px solid black;text-align:center;}");
+            req.setAttribute("tableStyle",
+                    "tr, td { border: 1px solid black;text-align:center;}");
         } else {
 //            Нужно ли тут winner
             req.setAttribute("winner", gc.getWinner());
-            req.setAttribute("tableStyle", "tr:not(:first-child) td { border: 1px solid black;text-align:center;}");
+            req.setAttribute("tableStyle",
+                    "tr:not(:first-child) td { border: 1px solid black;text-align:center;}");
         }
         req.setAttribute("boardView", getBoard());
         req.getRequestDispatcher("/game.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         gc.setPlayer1Name(req.getParameter("name1"));
         gc.setPlayer2Name(req.getParameter("name2"));
         doGet(req,resp);
     }
 
     private String getBoard() {
-        StringBuilder sb = new StringBuilder("<table align=\"center\" style=\"width:70%\">");
-        String view = "";
-        view += "<table align=\"center\" style=\"width:70%\">";
+        StringBuilder sb = new StringBuilder("<table align=\"center\" style=\"width:70%\">\n");
         for (int i = 0; i < gc.getRowLength(); i++) {
             // render column buttons
             if (i == 0 && !gc.isGameOver()) {
-                view += "<tr>";
+                sb.append("<tr>\n");
                 for (int j = 0; j < gc.getColLength(); j++) {
-                    view += "<td>";
-                    view += "<form action=\"game\" method=\"GET\">";
-                    view += String.format(
-                            "<button name=\"play\" value=\"%d\" style=\"text-align:center; width:64px; height:30px\">Move</button>",
-                            j);
-                    view += "</form>";
-                    view += "</td>";
+                    sb.append("<td><form action=\"game\" method=\"GET\" style=\"text-align:center;\">\n\t");
+                    sb.append(String.format("<button name=\"play\" value=\"%s\" " +
+                            "style=\"text-align:center; width:60px; height:30px\">Move</button>\n",j));
+                    sb.append("</form></td>\n");
                 }
-                view += "</tr>";
+                sb.append("</tr>\n");
             }
-            // render board
-            view += "<tr>";
+            sb.append("<tr>\n");
             for (int j = 0; j < gc.getColLength(); j++) {
-                view += String.format("<td><img alt=\"Coin\" src=%s></td>", gc.getImage(i, j));
+                sb.append(String.format("<td><img alt=\"Coin\" src=%s></td>\n", gc.getImage(i, j)));
             }
-            view += "</tr>";
+            sb.append("</tr>\n");
         }
-        view += "</table>";
-        return view;
+        sb.append("</table>");
+        return sb.toString();
     }
 }
