@@ -14,28 +14,23 @@ public class GameConnect {
     }
 
     public void turn(int col) {
+        int row = getRowLength() - 1;
+        while (row >= 0 && board[row][col] != 0) {
+            row--;
+        }
         if (player1Turn) {
-            int row = getRowLength() - 1;
-            while (row >= 0 && board[row][col] != 0) {
-                row --;
-            }
             if (row != -1) {
                 board[row][col] = 1;
-                checkStatus(board,1);
+                checkStatus(board, 1);
                 player1Turn = false;
                 player2Turn = true;
             }
         } else {
-            int row = getRowLength() - 1;
-            while (row >= 0 && board[row][col] != 0) {
-                row --;
-            }
             if (row != -1) {
                 board[row][col] = 2;
-                checkStatus(board,2);
+                checkStatus(board, 2);
                 player1Turn = true;
                 player2Turn = false;
-
             }
         }
     }
@@ -44,7 +39,7 @@ public class GameConnect {
         if (ifWin(board, cell)) {
             if (cell == 1) {
                 winner = String.format("%s is the winner!", player1Name);
-            } else if (cell == 2){
+            } else if (cell == 2) {
                 winner = String.format("%s is the winner!", player2Name);
             }
         }
@@ -53,12 +48,9 @@ public class GameConnect {
     private boolean ifWin(int[][] board, int cell) {
         boolean h = checkHorizontal(board, cell);
         boolean v = checkVertical(board, cell);
-        boolean dl = checkDiagonalRight(board, cell);
-        boolean dr = checkDiagonalLeft(board, cell);
-        if (h || v || dr || dl) {
-            return true;
-        }
-        return false;
+        boolean dr = checkDiagonalRight(board, cell);
+        boolean dl = checkDiagonalLeft(board, cell);
+        return h || v || dr || dl;
     }
 
     private boolean checkHorizontal(int[][] board, int cell) {
@@ -97,7 +89,7 @@ public class GameConnect {
         return false;
     }
 
-    private boolean checkDiagonalLeft(int[][] board, int cell) {
+    private boolean checkDiagonalRight(int[][] board, int cell) {
         int count = 0;
         for (int i = 0; i < getRowLength(); i++) {
             count = 0;
@@ -136,8 +128,8 @@ public class GameConnect {
         return false;
     }
 
-    private boolean checkDiagonalRight(int[][] board, int cell) {
-        int count;
+    private boolean checkDiagonalLeft(int[][] board, int cell) {
+        int count = 0;
         for (int i = 0; i < getRowLength(); i++) {
             count = 0;
             int row = i;
@@ -195,6 +187,11 @@ public class GameConnect {
         return board[0].length;
     }
 
+    public void startOver() {
+        clearBoard();
+        winner = "";
+    }
+
     public void clearBoard() {
         board = new int[getRowLength()][getColLength()];
     }
@@ -205,11 +202,6 @@ public class GameConnect {
 
     public boolean isGameOver() {
         return !winner.equals("");
-    }
-
-    public void startOver() {
-        clearBoard();
-        winner = "";
     }
 
     public void setPlayer1Name(String player1Name) {
