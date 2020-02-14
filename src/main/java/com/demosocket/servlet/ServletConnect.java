@@ -68,14 +68,12 @@ public class ServletConnect extends HttpServlet {
                 }
                 view += "</tr>";
             }
-
             // render board
             view += "<tr>";
             for (int j = 0; j < gc.getColLength(); j++) {
                 view += String.format("<td><img alt=\"Coin\" src=%s></td>", gc.getImage(i, j));
             }
             view += "</tr>";
-
         }
         view += "</table>";
         return view;
