@@ -16,8 +16,10 @@
 <body style="background: gainsboro">
 <h2 style="text-align: center">Connect Four</h2>
 <h3 style="text-align:center"> <%=request.getAttribute("winner")%> </h3>
+<%--Board--%>
 <div> <%= request.getAttribute("boardView")%> </div>
 <br>
+<%--button "Start Over"--%>
 <form action="game" method="GET">
     <button class="button" name="play" value="-1">Start Over</button>
 </form>

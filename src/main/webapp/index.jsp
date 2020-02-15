@@ -16,12 +16,14 @@
 </div>
 <form action="game" method="post">
     <div>
+<%--first player data--%>
         <div class="blueBlock">
             <label for="name1">Player 1:</label>
             <input class="field" type="text" id="name1" name="name1">
             <label for="firstMove1">First Move</label>
             <input class="field" type="radio" id="firstMove1" name="firstMove" value="player1" checked="checked">
         </div><br>
+<%--second player data--%>
         <div class="redBlock">
             <label for="name2">Player 2:</label>
             <input class="field" type="text" id="name2" name="name2">
@@ -29,6 +31,7 @@
             <input class="field" type="radio" id="firstMove2" name="firstMove" value="player2">
         </div><br>
     </div>
+<%--button "Submit"--%>
     <input class="button" type="submit">
 </form><br>
 </body>

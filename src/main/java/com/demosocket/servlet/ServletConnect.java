@@ -21,24 +21,30 @@ public class ServletConnect extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         if (req.getParameter("play") == null) {
+//            before the first game
             gc.clearBoard();
         } else {
             int value = Integer.parseInt(req.getParameter("play"));
             if (value == -1) {
+//                button pressed "Start Over"
                 gc.startOver();
-                req.getRequestDispatcher("index.jsp").forward(req,resp);
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
                 return;
             } else {
+//                make a move
                 gc.turn(value);
             }
         }
         if (gc.isGameOver()) {
+//            set attributes if there is a winner
             req.setAttribute("winner", gc.getWinner());
             req.setAttribute("tableStyle","tr, td { border: 1px solid black; text-align:center;}");
         } else {
+//            if the game is not over
             req.setAttribute("winner", gc.getWinner());
             req.setAttribute("tableStyle", getTableStyle());
         }
+//        give the game board to the game.jsp
         req.setAttribute("boardView", getBoard());
         req.getRequestDispatcher("/game.jsp").forward(req, resp);
     }
@@ -46,6 +52,7 @@ public class ServletConnect extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+//        set player names and first move
         gc.setPlayer1Name(req.getParameter("name1"));
         gc.setPlayer2Name(req.getParameter("name2"));
         if (req.getParameter("firstMove").equals("player1")) {
@@ -58,11 +65,13 @@ public class ServletConnect extends HttpServlet {
         doGet(req,resp);
     }
 
+//    draw a game board
     private String getBoard() {
         StringBuilder sb = new StringBuilder("<table align=\"center\" style=\"width:70%\">\n");
         for (int i = 0; i < gc.getRowLength(); i++) {
             if (i == 0 && !gc.isGameOver()) {
                 sb.append("<tr>\n");
+//                draw the buttons "Move"
                 for (int j = 0; j < gc.getColLength(); j++) {
                     sb.append("<td><form action=\"game\" method=\"GET\" style=\"text-align:center;\">\n\t");
                     sb.append(String.format("<button name=\"play\" value=\"%d\" " +
@@ -73,6 +82,7 @@ public class ServletConnect extends HttpServlet {
                 sb.append("</tr>\n");
             }
             sb.append("<tr>\n");
+//            draw cells
             for (int j = 0; j < gc.getColLength(); j++) {
                 sb.append(String.format("<td><img src=%s alt=\"Coin\"></td>\n", gc.getImage(i, j)));
             }
@@ -82,6 +92,7 @@ public class ServletConnect extends HttpServlet {
         return sb.toString();
     }
 
+//    "Move" button illumination style
     private String getTableStyle() {
         String tableStyle = "tr:not(:first-child) td { border: 1px solid black; text-align:center;}";
         if (gc.isPlayer1Turn()) {

@@ -13,6 +13,7 @@ public class GameConnect {
         this.board = new int[row][col];
     }
 
+//    game turn logic
     public void turn(int col) {
         int row = getRowLength() - 1;
         while (row >= 0 && board[row][col] != 0) {
@@ -35,6 +36,7 @@ public class GameConnect {
         }
     }
 
+//    winner is ..
     public void checkStatus(int[][] board, int cell) {
         if (ifWin(board, cell)) {
             if (cell == 1) {
@@ -45,6 +47,7 @@ public class GameConnect {
         }
     }
 
+//    check all lines
     private boolean ifWin(int[][] board, int cell) {
         boolean h = checkHorizontal(board, cell);
         boolean v = checkVertical(board, cell);
@@ -167,6 +170,7 @@ public class GameConnect {
         return false;
     }
 
+//    images for servlet
     public String getImage(int row, int col) {
         String src = "";
         if (board[row][col] == 0) {
@@ -179,21 +183,14 @@ public class GameConnect {
         return src;
     }
 
-    public int getRowLength() {
-        return board.length;
+    public void clearBoard() {
+        board = new int[getRowLength()][getColLength()];
     }
 
-    public int getColLength() {
-        return board[0].length;
-    }
-
+//    clear bord and delete winner
     public void startOver() {
         clearBoard();
         winner = "";
-    }
-
-    public void clearBoard() {
-        board = new int[getRowLength()][getColLength()];
     }
 
     public String getWinner() {
@@ -204,6 +201,14 @@ public class GameConnect {
         return !winner.equals("");
     }
 
+    public int getRowLength() {
+        return board.length;
+    }
+
+    public int getColLength() {
+        return board[0].length;
+    }
+
     public void setPlayer1Name(String player1Name) {
         this.player1Name = player1Name;
     }
@@ -212,19 +217,19 @@ public class GameConnect {
         this.player2Name = player2Name;
     }
 
-    public boolean isPlayer1Turn() {
-        return player1Turn;
-    }
-
-    public boolean isPlayer2Turn() {
-        return player2Turn;
-    }
-
     public void setPlayer1Turn(boolean player1Turn) {
         this.player1Turn = player1Turn;
     }
 
     public void setPlayer2Turn(boolean player2Turn) {
         this.player2Turn = player2Turn;
+    }
+
+    public boolean isPlayer1Turn() {
+        return player1Turn;
+    }
+
+    public boolean isPlayer2Turn() {
+        return player2Turn;
     }
 }
