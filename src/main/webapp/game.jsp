@@ -8,14 +8,14 @@
         img {
             width: 55px;
             height: 55px;
-            margin: 3px;
+            margin-top: 4px;
         }
         <%=request.getAttribute("tableStyle")%>
     </style>
 </head>
 <body style="background: gainsboro">
 <h2 style="text-align: center">Connect Four</h2>
-<h3 style="text-align:center"> <%=request.getAttribute("winner")%> </h3>
+<h2 style="text-align:center"> <%=request.getAttribute("winner")%> </h2>
 <%--Board--%>
 <div> <%= request.getAttribute("boardView")%> </div>
 <br>
