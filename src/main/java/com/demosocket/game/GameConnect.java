@@ -45,6 +45,10 @@ public class GameConnect {
                 winner = String.format("%s is the winner!", player2Name);
             }
         }
+//        full board
+        if (isBoardFull(board)) {
+            winner = "The board is full!";
+        }
     }
 
 //    check all lines
@@ -191,6 +195,17 @@ public class GameConnect {
     public void startOver() {
         clearBoard();
         winner = "";
+    }
+
+//    check the top line
+    private boolean isBoardFull(int[][] board) {
+        boolean fullBoard = true;
+        for (int i = 0; i < getColLength(); i++) {
+            if (board[0][i] == 0) {
+                fullBoard = false;
+            }
+        }
+        return fullBoard;
     }
 
     public String getWinner() {
