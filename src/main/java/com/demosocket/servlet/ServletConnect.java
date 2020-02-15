@@ -50,6 +50,13 @@ public class ServletConnect extends HttpServlet {
             throws ServletException, IOException {
         gc.setPlayer1Name(req.getParameter("name1"));
         gc.setPlayer2Name(req.getParameter("name2"));
+        if (req.getParameter("firstMove").equals("player1")) {
+            gc.setPlayer1Turn(true);
+            gc.setPlayer2Turn(false);
+        } else {
+            gc.setPlayer1Turn(false);
+            gc.setPlayer2Turn(true);
+        }
         doGet(req,resp);
     }
 
