@@ -34,12 +34,10 @@ public class ServletConnect extends HttpServlet {
         }
         if (gc.isGameOver()) {
             req.setAttribute("winner", gc.getWinner());
-            req.setAttribute("tableStyle",
-                    "tr, td { border: 1px solid black;text-align:center;}");
+            req.setAttribute("tableStyle","tr, td { border: 1px solid black; text-align:center;}");
         } else {
             req.setAttribute("winner", gc.getWinner());
-            req.setAttribute("tableStyle",
-                    "tr:not(:first-child) td { border: 1px solid black;text-align:center;}");
+            req.setAttribute("tableStyle", getTableStyle());
         }
         req.setAttribute("boardView", getBoard());
         req.getRequestDispatcher("/game.jsp").forward(req, resp);
@@ -68,7 +66,8 @@ public class ServletConnect extends HttpServlet {
                 for (int j = 0; j < gc.getColLength(); j++) {
                     sb.append("<td><form action=\"game\" method=\"GET\" style=\"text-align:center;\">\n\t");
                     sb.append(String.format("<button name=\"play\" value=\"%d\" " +
-                            "style=\"text-align:center; width:60px; height:30px\">Move</button>\n",j));
+                            "style=\"text-align:center; width:50px; height:50px; border-radius:25px; margin: 5px; " +
+                            "background: linear-gradient(rgb(255,255,255), rgb(220,220,220));\">Move</button>\n",j));
                     sb.append("</form></td>\n");
                 }
                 sb.append("</tr>\n");
@@ -81,5 +80,21 @@ public class ServletConnect extends HttpServlet {
         }
         sb.append("</table>");
         return sb.toString();
+    }
+
+    private String getTableStyle() {
+        String tableStyle = "tr:not(:first-child) td { border: 1px solid black; text-align:center;}";
+        if (gc.isPlayer1Turn()) {
+            tableStyle += "button:hover {\n" +
+                    "box-shadow: 0px 0px 2px 5px rgba(14,93,204,1); -webkit-transition: All 0.5s ease;\n" +
+                    "-moz-transition: All 0.5s ease; -o-transition: All 0.5s ease; transition: All 0.5s ease;\n" +
+                    "}";
+        } else {
+            tableStyle += "button:hover {\n" +
+                    "box-shadow: 0px 0px 2px 5px rgba(214,14,14,1); -webkit-transition: All 0.5s ease;\n" +
+                    "-moz-transition: All 0.5s ease; -o-transition: All 0.5s ease; transition: All 0.5s ease;\n" +
+                    "}";
+        }
+        return tableStyle;
     }
 }

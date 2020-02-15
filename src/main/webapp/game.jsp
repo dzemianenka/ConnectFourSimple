@@ -5,17 +5,17 @@
     <title>ConnectGame</title>
     <link rel="stylesheet" href="css/elements.css" >
     <style>
-        <%=request.getAttribute("tableStyle")%>
         img {
             width: 60px;
             height: 60px;
             margin: 2px;
         }
+        <%=request.getAttribute("tableStyle")%>
     </style>
 </head>
 <body style="background: gainsboro">
-<h1 style="text-align: center">Connect Four</h1>
-<h2 style="text-align:center"> <%=request.getAttribute("winner")%> </h2>
+<h2 style="text-align: center">Connect Four</h2>
+<h3 style="text-align:center"> <%=request.getAttribute("winner")%> </h3>
 <div> <%= request.getAttribute("boardView")%> </div>
 <br>
 <form action="game" method="GET">

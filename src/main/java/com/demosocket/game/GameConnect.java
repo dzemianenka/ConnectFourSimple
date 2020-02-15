@@ -212,6 +212,14 @@ public class GameConnect {
         this.player2Name = player2Name;
     }
 
+    public boolean isPlayer1Turn() {
+        return player1Turn;
+    }
+
+    public boolean isPlayer2Turn() {
+        return player2Turn;
+    }
+
     public void setPlayer1Turn(boolean player1Turn) {
         this.player1Turn = player1Turn;
     }

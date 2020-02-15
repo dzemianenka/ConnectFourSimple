@@ -7,8 +7,8 @@
 </head>
 <body style="background: gainsboro">
 <div>
-    <h1 style="text-align: center">Connect Four</h1>
-    <h2 style="text-align: center">Object:</h2>
+    <h2 style="text-align: center">Connect Four</h2>
+    <h3 style="text-align: center">Object:</h3>
     <div style="text-align: center"> To win Connect Four you must be the first player
         to get four of your colored checkers in a row
         either horizontally, vertically or diagonally.
