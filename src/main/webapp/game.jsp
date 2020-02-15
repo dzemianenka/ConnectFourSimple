@@ -7,19 +7,17 @@
     <link rel="stylesheet" href="css/elements.css" >
     <style>
         <%=request.getAttribute("tableStyle")%>
-
         img {
             width: 60px;
             height: 60px;
-            padding-top: 3px;
+            margin: 2px;
         }
     </style>
 </head>
 <body style="background: gainsboro">
 <h1 style="text-align: center">Connect Four</h1>
-<h2 style="text-align:center"> <%=request.getAttribute("winner")%></h2>
-
-<%= request.getAttribute("boardView")%>
+<h2 style="text-align:center"> <%=request.getAttribute("winner")%> </h2>
+<div> <%= request.getAttribute("boardView")%> </div>
 <br>
 <form action="game" method="GET">
     <button class="button" name="play" value="-1">Start Over</button>

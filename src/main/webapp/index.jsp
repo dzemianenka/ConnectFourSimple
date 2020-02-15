@@ -21,7 +21,7 @@
             <input class="field" type="text" id="name1" name="name1">
         </div><br>
         <div class="redBlock">
-            <label for="name2">Player 1:</label>
+            <label for="name2">Player 2:</label>
             <input class="field" type="text" id="name2" name="name2">
         </div><br>
     </div>

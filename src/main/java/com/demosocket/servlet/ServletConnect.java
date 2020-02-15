@@ -37,7 +37,6 @@ public class ServletConnect extends HttpServlet {
             req.setAttribute("tableStyle",
                     "tr, td { border: 1px solid black;text-align:center;}");
         } else {
-//            Нужно ли тут winner
             req.setAttribute("winner", gc.getWinner());
             req.setAttribute("tableStyle",
                     "tr:not(:first-child) td { border: 1px solid black;text-align:center;}");
@@ -57,12 +56,11 @@ public class ServletConnect extends HttpServlet {
     private String getBoard() {
         StringBuilder sb = new StringBuilder("<table align=\"center\" style=\"width:70%\">\n");
         for (int i = 0; i < gc.getRowLength(); i++) {
-            // render column buttons
             if (i == 0 && !gc.isGameOver()) {
                 sb.append("<tr>\n");
                 for (int j = 0; j < gc.getColLength(); j++) {
                     sb.append("<td><form action=\"game\" method=\"GET\" style=\"text-align:center;\">\n\t");
-                    sb.append(String.format("<button name=\"play\" value=\"%s\" " +
+                    sb.append(String.format("<button name=\"play\" value=\"%d\" " +
                             "style=\"text-align:center; width:60px; height:30px\">Move</button>\n",j));
                     sb.append("</form></td>\n");
                 }
@@ -70,7 +68,7 @@ public class ServletConnect extends HttpServlet {
             }
             sb.append("<tr>\n");
             for (int j = 0; j < gc.getColLength(); j++) {
-                sb.append(String.format("<td><img alt=\"Coin\" src=%s></td>\n", gc.getImage(i, j)));
+                sb.append(String.format("<td><img src=%s alt=\"Coin\"></td>\n", gc.getImage(i, j)));
             }
             sb.append("</tr>\n");
         }
