@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="css/elements.css" >
     <style>
         img {
-            width: 60px;
-            height: 60px;
-            margin: 2px;
+            width: 55px;
+            height: 55px;
+            margin: 3px;
         }
         <%=request.getAttribute("tableStyle")%>
     </style>
